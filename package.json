@@ -1,0 +1,29 @@
+{
+  "name": "job-board",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/temybams/job-board.git",
+  "author": "temybams <temitope.bamisi@decagon.dev>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/Server.js",
+    "build": "tsc",
+    "dev": "nodemon dist/Server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^5.0.1",
+    "@types/jwt-simple": "^0.5.36",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.13.11",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17"
+  }
+}
