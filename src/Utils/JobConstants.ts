@@ -1,10 +1,10 @@
-exports.JOB_STATUS = {
+export const JOB_STATUS = {
     PENDING: "pending",
     INTERVIEW: "interview",
     DECLINED: "declined",
 };
 
-exports.JOB_TYPE = {
+export const JOB_TYPE = {
     FULL_TIME: "full-time",
     PART_TIME: "part-time",
     INTERNSHIP: "internship",

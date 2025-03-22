@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node dist/Server.js",
     "build": "tsc",
-    "dev": "nodemon dist/Server.js",
+    "dev": "nodemon --exec ts-node src/Server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -17,13 +17,20 @@
     "@types/jwt-simple": "^0.5.36",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.13.11",
+    "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "typescript": "^5.8.2"
+    "http-status": "^2.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "typescript": "^5.8.2",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17"
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.9",
+    "ts-node": "^10.9.2"
   }
 }
