@@ -1,7 +1,26 @@
-import mongoose from "mongoose";
+import mongoose, {Types,  Document, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
-const UserSchema = new mongoose.Schema(
+
+export enum UserRole {
+    ADMIN = "admin",
+    RECRUITER = "recruiter",
+    USER = "user",
+}
+
+ export interface IUser extends Document {
+    username: string;
+    email: string;
+    password: string;
+    location?: string;
+    gender?: string;
+    resume?: string;
+    role?: UserRole;
+    _id: Types.ObjectId;
+  }
+
+
+const UserSchema = new Schema<IUser>(
     {
         username: String,
         email: String,
@@ -14,14 +33,14 @@ const UserSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            enum: ["admin", "recruiter", "user"],
-            default: "user",
+            default: UserRole.USER,
+    
         },
         resume: {
             type: String,
         },
     },
-    { timestamps: true } // to keep track
+    { timestamps: true } 
 );
 
 // Hashing Password
@@ -33,6 +52,6 @@ UserSchema.pre("save", async function (next) {
     next();
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model<IUser>("User", UserSchema);
 
 export default User;

@@ -9,7 +9,7 @@ interface IApplication extends Document {
     status: string;
     resume: string;
     dateOfApplication: Date;
-    dateOfJoining?: Date;  // Make this optional since it's not always provided
+    dateOfJoining?: Date;  
 }
 
 // Define the Application Schema

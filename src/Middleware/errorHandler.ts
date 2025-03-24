@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { IError } from '../Utils/error.types'
+import { IError } from '../types/error.types'
 
 const errorHandler = (
     err: IError,

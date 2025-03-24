@@ -1,4 +1,4 @@
-import { IError } from '../Utils/error.types'
+import { IError } from './error.types'
 
 const throwError = (message: string, status: number) => {
     const error: IError = new Error(message)
