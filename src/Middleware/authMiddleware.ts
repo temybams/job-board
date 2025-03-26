@@ -17,7 +17,7 @@ const authMiddleware = catchAsync(
             return throwError('Unauthorized', httpStatus.UNAUTHORIZED);
         }
 
-        const decoded = JWTService.verify(token) as { sub: string };
+        const decoded = JWTService.verify(token) as { sub: string, role: string  };
 
         if (!decoded) {
             return throwError('Unauthorized', httpStatus.UNAUTHORIZED);

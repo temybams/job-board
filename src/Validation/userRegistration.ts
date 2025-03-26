@@ -15,4 +15,13 @@ const userLoginSchema = z.object({
     password: z.string().min(1, "Password is required"),
 });
 
-export { userRegisterSchema , userLoginSchema };
+const updateUserSchema = z.object({
+    username: z.string().min(1, "Username is required"),
+    email: z.string().email("Invalid email").min(1, "Email is required"),
+    location: z.string().min(1, "Location is required"),
+    gender: z.enum(["male", "female", "other"]).optional(),
+    role: z.enum(["admin", "recruiter", "user"]).optional(),
+    resume: z.string().url("Invalid resume link").optional(),
+});
+
+export { userRegisterSchema, userLoginSchema };

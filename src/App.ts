@@ -1,7 +1,8 @@
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import UserRouter from "./Router/authRoutes";
+import AuthRouter from "./Router/authRoutes";
+import UserRouter from "./Router/userRoutes";
 import authMiddleware from "./Middleware/authMiddleware";
 
 const app = express();
@@ -18,7 +19,8 @@ app.use(
     })
 );
 
-app.use("/api/v1/Auth", UserRouter);
+app.use("/api/v1/Auth", AuthRouter);
+app.use("/api/v1/Users", authMiddleware, UserRouter);
 
 // Custom Middlewares
 // import { authenticateUser } from "./Middleware/UserAuthenticationMiddleware";
@@ -32,7 +34,7 @@ app.use("/api/v1/Auth", UserRouter);
 
 // Connecting routes
 // app.use("/api/v1/Jobs", authenticateUser, JobRouter);
-// app.use("/api/v1/Users", authMiddleware, UserRouter);
+
 
 // app.use("/api/v1/Admin", authenticateUser, AdminRouter);
 // app.use("/api/v1/Application", authenticateUser, ApplicationRouter);
