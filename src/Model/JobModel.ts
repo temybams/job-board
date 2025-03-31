@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 import { JOB_STATUS, JOB_TYPE } from "../Utils/JobConstants";
 
 // Define the interface for the Job Document
-interface IJob extends Document {
+export interface IJob extends Document {
     company: string;
     position: string;
     jobStatus: string;
@@ -23,15 +23,13 @@ const JobSchema = new Schema<IJob>(
     {
         company: {
             type: String,
-            required: [true, "A Company name is required"],  // Corrected 'requried' to 'required'
-            trim: true,
+            required: [true, "A Company name is required"],  
             minLength: [5, "Company name is too short"],
             maxLength: [100, "Company name is too long"],
         },
         position: {
             type: String,
-            required: [true, "Job must have a Position"],  // Corrected 'requried' to 'required'
-            trim: true,
+            required: [true, "Job must have a Position"],  
             minLength: [5, "Company name is too short"],
             maxLength: [200, "Company name is too long"],
         },
@@ -92,6 +90,5 @@ const JobSchema = new Schema<IJob>(
     { timestamps: true }
 );
 
-// Define and export the Job Model
 const Job = mongoose.model<IJob>("Job", JobSchema);
 export default Job;

@@ -6,7 +6,7 @@ import throwError from "../../types/error";
 import bcrypt from "bcrypt";
 import JWTService from "../../Utils/JWTGenerator";
 
-// Service function to add a user
+
 const authServices = {
   addUserService: async (data: IUser) => {
     const isUserExists = await UserModel.findOne({ email: data.email });

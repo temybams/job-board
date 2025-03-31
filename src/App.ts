@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import AuthRouter from "./Router/authRoutes";
 import UserRouter from "./Router/userRoutes";
 import authMiddleware from "./Middleware/authMiddleware";
+import jobRouter from "./Router/jobRoutes";
+
 
 const app = express();
 
@@ -21,6 +23,7 @@ app.use(
 
 app.use("/api/v1/Auth", AuthRouter);
 app.use("/api/v1/Users", authMiddleware, UserRouter);
+app.use("/api/v1/Jobs",authMiddleware, jobRouter);
 
 // Custom Middlewares
 // import { authenticateUser } from "./Middleware/UserAuthenticationMiddleware";
