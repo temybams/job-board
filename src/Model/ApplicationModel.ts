@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 import { STATUS } from "../Utils/ApplicationConstants";
 
 // Define the interface for the Application Document
-interface IApplication extends Document {
+export interface IApplication extends Document {
     applicantId: mongoose.Types.ObjectId;
     recruiterId: mongoose.Types.ObjectId;
     jobId: mongoose.Types.ObjectId;

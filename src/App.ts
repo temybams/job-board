@@ -5,6 +5,8 @@ import AuthRouter from "./Router/authRoutes";
 import UserRouter from "./Router/userRoutes";
 import authMiddleware from "./Middleware/authMiddleware";
 import jobRouter from "./Router/jobRoutes";
+import ApplicationRouter from "./Router/applicationRoutes";
+import AdminRouter from "./Router/adminRouter";
 
 
 const app = express();
@@ -24,6 +26,8 @@ app.use(
 app.use("/api/v1/Auth", AuthRouter);
 app.use("/api/v1/Users", authMiddleware, UserRouter);
 app.use("/api/v1/Jobs",authMiddleware, jobRouter);
+app.use("/api/v1/Admin", authMiddleware, AdminRouter);
+app.use("/api/v1/Application", authMiddleware, ApplicationRouter);
 
 // Custom Middlewares
 // import { authenticateUser } from "./Middleware/UserAuthenticationMiddleware";
@@ -39,7 +43,6 @@ app.use("/api/v1/Jobs",authMiddleware, jobRouter);
 // app.use("/api/v1/Jobs", authenticateUser, JobRouter);
 
 
-// app.use("/api/v1/Admin", authenticateUser, AdminRouter);
-// app.use("/api/v1/Application", authenticateUser, ApplicationRouter);
+
 
 export default app;

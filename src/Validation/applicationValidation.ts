@@ -1,31 +1,19 @@
 import { z } from 'zod';
 import { STATUS } from "../Utils/ApplicationConstants";
-import { Types } from 'mongoose';
+import mongoose from "mongoose";
 
 
 const applicationSchema = z.object({
-    applicantId: z
-        .string()
-        .refine(value => Types.ObjectId.isValid(value), {
-            message: "Invalid Applicant ID",
-        }),
-    recruiterId: z
-        .string()
-        .refine(value => Types.ObjectId.isValid(value), {
-            message: "Invalid Recruiter ID",
-        }),
-    jobId: z
-        .string()
-        .refine(value => Types.ObjectId.isValid(value), {
-            message: "Invalid Job ID",
-        }),
-    status: z.enum([STATUS.PENDING, STATUS.ACCEPTED, STATUS.REJECTED]),
+
+    jobId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), {
+        message: "Invalid Job ID",
+    }),
+    resume: z.string().nonempty({ message: "Resume URL is required" }),
     dateOfApplication: z
-        .string()
-        .refine(value => !isNaN(Date.parse(value)), {
-            message: "Invalid Date",
+        .optional(z.coerce.date())  // Automatically convert string to Date
+        .refine((val) => !val || val <= new Date(), {
+            message: "dateOfApplication should be less than or equal to current date",
         }),
-    resume: z.string().url("Invalid URL for resume"),
 });
 
 export { applicationSchema };

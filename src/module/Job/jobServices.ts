@@ -2,56 +2,11 @@ import httpStatus from 'http-status';
 import Job, { IJob } from '../../Model/JobModel';
 import { jobSchema } from '../../Validation/jobValidation';
 import throwError from "../../types/error";
-import mongoose, { Document, Model, SortOrder } from 'mongoose';
-import { constants } from 'node:fs';
+import mongoose from 'mongoose';
+import {getData} from '../../Utils/helperFunction';
 
-interface IQueryParams {
-    sortBy?: string;
-    skip?: number;
-    limit?: number;
-    fields?: string;
-    page?: number;
-}
 
-const getData = async (filters: Record<string, any>, queries: IQueryParams) => {
-    let sortCriteria: { [key: string]: SortOrder } = {};
 
-    // Sorting logic
-    if (queries.sortBy) {
-        switch (queries.sortBy) {
-            case "newest":
-                sortCriteria = { createdAt: -1 };
-                break;
-            case "oldest":
-                sortCriteria = { createdAt: 1 };
-                break;
-            case "a-z":
-                sortCriteria = { position: 1 };
-                break;
-            case "z-a":
-                sortCriteria = { position: -1 };
-                break;
-            default:
-                sortCriteria = { createdAt: -1 };
-                break;
-        }
-    } else {
-        sortCriteria = { createdAt: -1 };
-    }
-
-    // Fetching jobs based on filters, pagination, and sorting
-    const result: IJob[] = await Job.find(filters)
-        .skip(queries.skip || 0)
-        .limit(queries.limit || 5)
-        .sort(sortCriteria)
-        .select(queries.fields ? queries.fields.split(',').join(' ') : '');
-
-    // Total jobs count based on filters
-    const totalJobs = await Job.countDocuments(filters);
-    const pageCount = Math.ceil(totalJobs / (queries.limit || 5));
-
-    return { result, totalJobs, pageCount, page: queries.page || 1 };
-};
 
 const jobServices = {
 
