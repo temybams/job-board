@@ -2,7 +2,7 @@ import { Response } from "express";
 import { RequestWithUser } from "../../types/requestTypes";
 import jobServices from "./jobServices";
 import catchAsync from "../../Middleware/catchAsync";
-import { update } from "lodash";
+
 
 const jobController = {
     getAllJobs: catchAsync(async (req: RequestWithUser, res: Response) => {
