@@ -17,8 +17,8 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.json());
 app.use(
     cors({
-        origin: ["https://mern-job-portal-seven.vercel.app", "http://localhost:5173"],
-        methods: ["GET,POST,DELETE,PUT,PATCH"],
+        origin: ["https://job-board-d963.onrender.com", "http://localhost:5173"],
+        methods: ["GET", "POST", "DELETE", "PUT", "PATCH"], 
         credentials: true,
     })
 );
